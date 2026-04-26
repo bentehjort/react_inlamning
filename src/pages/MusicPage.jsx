@@ -12,14 +12,21 @@ function MusicPage() {
   const [searchFilter, setSearchFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
-  //Behöver fixa anropet, ta in musicservice så anropet blir rtt
+  //executeSearch changes the value of searchFilter and currenPage and
+  //because we've placed those states in the useEffects dependency array,
+  //fetchBands will run when executeSearch has been executed, presenting a new list of bands
+  const executeSearch = (searchWord) => {
+    setSearchFilter(searchWord);
+    setCurrentPage(1);
+  };
   useEffect(() => {
     async function fetchBands() {
       const data = await _service.readMusicGroupsAsync(
-        currentPage,
+        currentPage - 1,
         false,
         searchFilter,
         10,
+        false,
       );
       setBands(data.pageItems);
     }
@@ -28,10 +35,7 @@ function MusicPage() {
   return (
     <div>
       <h1>All bands</h1>
-      <SearchBar
-        searchFilter={searchFilter}
-        setSearchFilter={setSearchFilter}
-      ></SearchBar>
+      <SearchBar onSearch={executeSearch}></SearchBar>
       <Container>
         <Row className="border-bottom border-dark pb-2 mb-3 fw-bold">
           <Col>Band name</Col>

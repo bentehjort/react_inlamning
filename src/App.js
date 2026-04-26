@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import AboutPage from "./pages/AboutPage";
 import MusicPage from "./pages/MusicPage";
 import BandDetails from "./pages/BandDetails";
-import TablePage from "./pages/TablePage";
+import AddNewBand from "./pages/AddNewBand";
 import "./App.css";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
             <Nav.Link as={Link} to="/musicPage">
               Music Page
             </Nav.Link>
-            <Nav.Link as={Link} to="/tablePage">
+            <Nav.Link as={Link} to="/addNewBand">
               Add new band
             </Nav.Link>
           </Nav>
@@ -30,7 +30,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/musicPage" element={<MusicPage />} />
         <Route path="/musicPage/:id" element={<BandDetails />} />
-        <Route path="/tablePage" element={<TablePage />} />
+        <Route path="/addNewBand" element={<AddNewBand />} />
       </Routes>
     </div>
   );
