@@ -1,6 +1,10 @@
 import { Button } from "react-bootstrap";
 function PaginationButtons({ currentPage, setCurrentPage }) {
   function HandlePageChange(amount) {
+    //prevents user from going to page 0 or negative pages
+    if (currentPage + amount < 1) {
+      return;
+    }
     setCurrentPage((prevPage) => prevPage + amount);
   }
   return (
