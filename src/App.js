@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage";
 import MusicPage from "./pages/MusicPage";
 import BandDetails from "./pages/BandDetails";
 import AddNewBand from "./pages/AddNewBand";
+import HomePage from "./pages/HomePage";
 import "./App.css";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
-        <Route path="/" element={<h1>Welcome to my music app</h1>} />
+        <Route path="/" element={<AboutPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/musicPage" element={<MusicPage />} />
         <Route path="/musicPage/:id" element={<BandDetails />} />

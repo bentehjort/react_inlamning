@@ -11,6 +11,11 @@ function MusicPage() {
   const [bands, setBands] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalBands, setTotalBands] = useState("");
+  //created state for seeded to be able to control when to show seeded vs unseeded
+  //bands are shown. only seeded bands will be shown when viewing the bands normally,
+  //unseeded bands (as user created bands) will be visible when searching
+  const [seeded, setSeeded] = useState(true);
   const navigate = useNavigate();
   //executeSearch changes the value of searchFilter and currenPage and
   //because we've placed those states in the useEffects dependency array,
@@ -18,6 +23,13 @@ function MusicPage() {
   const executeSearch = (searchWord) => {
     setSearchFilter(searchWord);
     setCurrentPage(1);
+    setSeeded(false);
+
+    if (searchWord === "") {
+      setSeeded(true);
+    } else {
+      setSeeded(false);
+    }
   };
   useEffect(() => {
     async function fetchBands() {
@@ -26,16 +38,18 @@ function MusicPage() {
         false,
         searchFilter,
         10,
-        false,
+        seeded,
       );
       setBands(data.pageItems);
+      setTotalBands(data.dbItemsCount);
     }
     fetchBands();
-  }, [currentPage, searchFilter]);
+  }, [currentPage, searchFilter, seeded]);
   return (
     <div>
       <h1>All bands</h1>
       <SearchBar onSearch={executeSearch}></SearchBar>
+      <p>Total amount of bands found: {totalBands}</p>
       <Container>
         <Row className="border-bottom border-dark pb-2 mb-3 fw-bold">
           <Col>Band name</Col>

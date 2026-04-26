@@ -1,4 +1,4 @@
-function AboutPage() {
+function HomePage() {
   return (
     <div>
       <h1>Welcome to my music app!</h1>
@@ -7,4 +7,4 @@ function AboutPage() {
     </div>
   );
 }
-export default AboutPage;
+export default HomePage;
