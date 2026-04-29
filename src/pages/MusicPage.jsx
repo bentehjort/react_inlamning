@@ -12,8 +12,8 @@ function MusicPage() {
   const [searchFilter, setSearchFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBands, setTotalBands] = useState("");
-  //created state for seeded to be able to control when to show seeded vs unseeded
-  //bands are shown. only seeded bands will be shown when viewing the bands normally,
+  //created state for seeded to be able to control when to show seeded vs unseeded bands
+  //only seeded bands will be shown when viewing the bands normally,
   //unseeded bands (as user created bands) will be visible when searching
   const [seeded, setSeeded] = useState(true);
   const navigate = useNavigate();
@@ -46,6 +46,7 @@ function MusicPage() {
     fetchBands();
   }, [currentPage, searchFilter, seeded]);
   return (
+    //Presenting bands
     <div>
       <h1>All bands</h1>
       <SearchBar onSearch={executeSearch}></SearchBar>

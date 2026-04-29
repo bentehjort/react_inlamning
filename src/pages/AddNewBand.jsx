@@ -13,6 +13,8 @@ function AddNewBand() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //validation. creating an object with error messages for each field that fails validation
+    //if there are any error messages we return early and present message to user
     const newErrors = {};
     if (bandName === "") {
       newErrors.bandName = "You must provide a band name";
@@ -28,6 +30,7 @@ function AddNewBand() {
     if (Object.keys(newErrors).length > 0) {
       return;
     }
+    //if validation is passed we create a new band item
     const newBandItem = {
       name: bandName,
       genre: Number(genre),
@@ -59,6 +62,8 @@ function AddNewBand() {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="bandName">
             <Form.Label>Band name *</Form.Label>
+            {/*sets the value of the input field to the bandName state variable 
+            if the bandName state variable is not empty */}
             <Form.Control
               type="text"
               value={bandName}

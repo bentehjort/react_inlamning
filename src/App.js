@@ -4,7 +4,6 @@ import AboutPage from "./pages/AboutPage";
 import MusicPage from "./pages/MusicPage";
 import BandDetails from "./pages/BandDetails";
 import AddNewBand from "./pages/AddNewBand";
-import HomePage from "./pages/HomePage";
 import "./App.css";
 
 function App() {
